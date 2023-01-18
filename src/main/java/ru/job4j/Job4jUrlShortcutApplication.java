@@ -9,5 +9,4 @@ public class Job4jUrlShortcutApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(Job4jUrlShortcutApplication.class, args);
 	}
-
 }
