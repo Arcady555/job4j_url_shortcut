@@ -10,6 +10,7 @@ import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 
 @Data
 @Service
@@ -41,9 +42,5 @@ public class SiteService {
             }
         }
         return namePerMethod;
-    }
-
-    public String generate() {
-        return "";
     }
 }

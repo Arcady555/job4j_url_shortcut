@@ -10,47 +10,59 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import ru.job4j.repository.SiteRepository;
 import ru.job4j.repository.model.Site;
+import ru.job4j.repository.model.SiteDTO;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Objects;
+import java.util.Random;
 
 @Data
 @RestController
 @RequestMapping("/users")
 public class UserController {
-    private final SiteRepository posts;
+    private final SiteRepository sites;
     private final BCryptPasswordEncoder encoder;
-    private final ObjectMapper objectMapper;
-    private static final Logger LOGGER = LoggerFactory.getLogger(UserController.class.getSimpleName());
 
-    @PostMapping("/sign-up")
-    public ResponseEntity<Site> signUp(@Valid @RequestBody Site post) {
-        if (Objects.equals(post.getLogin(), "хер") || Objects.equals(post.getPassword(), "хер")) {
-            throw new IllegalArgumentException("foul language login or password");
+    @PostMapping("/registration")
+    public ResponseEntity<SiteDTO> signUp(@Valid @RequestBody Site site) {
+        if (Objects.equals(site.getSite(), "хер")) {
+            throw new IllegalArgumentException("foul language");
         }
-        post.setPassword(encoder.encode(post.getPassword()));
-        return new ResponseEntity<>(this.posts.save(post), HttpStatus.CREATED);
-    }
-
-    @GetMapping("/all")
-    public List<Site> findAll() {
-        return posts.findAll();
+        String login = generateCode();
+        String password = generateCode();
+        site.setLogin(login);
+        site.setPassword(password);
+        site.setPassword(encoder.encode(site.getPassword()));
+        if (sites.save(site).getId() != 0) {
+            return new ResponseEntity<>(
+                    new SiteDTO(true, login, password),
+                    HttpStatus.CREATED
+            );
+        } else {
+            return new ResponseEntity<>(new SiteDTO(), HttpStatus.BAD_REQUEST);
+        }
     }
 
     @ExceptionHandler(value = { IllegalArgumentException.class })
-    public void exceptionHandler(Exception e, HttpServletRequest request, HttpServletResponse response)
+    public void exceptionHandler(Exception e, HttpServletRequest request, HttpServletResponse response, ObjectMapper objectMapper)
             throws IOException {
+        Logger logger = LoggerFactory.getLogger(UserController.class.getSimpleName());
         response.setStatus(HttpStatus.BAD_REQUEST.value());
         response.setContentType("application/json");
         response.getWriter().write(objectMapper.writeValueAsString(new HashMap<>() { {
             put("message", e.getMessage());
             put("type", e.getClass());
         }}));
-        LOGGER.error(e.getLocalizedMessage());
+        logger.error(e.getLocalizedMessage());
+    }
+
+    private String generateCode() {
+        Random random = new Random();
+        int intPassword = random.nextInt(9999);
+        return Integer.toString(intPassword);
     }
 }

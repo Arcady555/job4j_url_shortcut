@@ -24,9 +24,10 @@ public class Site {
     @NotNull(message = "Id must be non null")
     private int id;
 
-    @NotNull(message = "Login must be not empty")
+    @NotNull(message = "Name of site must be not empty")
+    private String site;
+
     private String login;
 
-    @NotNull(message = "Password must be not empty")
     private String password;
 }
