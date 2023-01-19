@@ -9,7 +9,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import ru.job4j.repository.model.Post;
+import ru.job4j.repository.model.Site;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -36,8 +36,8 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     public Authentication attemptAuthentication(HttpServletRequest req, HttpServletResponse res)
             throws AuthenticationException {
         try {
-            Post creds = new ObjectMapper()
-                    .readValue(req.getInputStream(), Post.class);
+            Site creds = new ObjectMapper()
+                    .readValue(req.getInputStream(), Site.class);
             return auth.authenticate(
                     new UsernamePasswordAuthenticationToken(
                             creds.getLogin(),

@@ -7,8 +7,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import ru.job4j.repository.model.Post;
-import ru.job4j.repository.PostRepository;
+import ru.job4j.repository.model.Site;
+import ru.job4j.repository.SiteRepository;
 
 import java.util.Optional;
 
@@ -18,11 +18,11 @@ import static java.util.Collections.emptyList;
 @Data
 @AllArgsConstructor
 public class UserDetailsServiceImpl implements UserDetailsService {
-    private final PostRepository sites;
+    private final SiteRepository sites;
 
     @Override
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
-        Optional<Post> optionalUser = sites.findByLogin(login);
+        Optional<Site> optionalUser = sites.findByLogin(login);
         if (optionalUser.isEmpty()) {
             throw new UsernameNotFoundException(login);
         }

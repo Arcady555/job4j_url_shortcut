@@ -16,7 +16,7 @@ import javax.validation.constraints.NotNull;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-public class Post {
+public class Site {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

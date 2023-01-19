@@ -8,8 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
-import ru.job4j.repository.PostRepository;
-import ru.job4j.repository.model.Post;
+import ru.job4j.repository.SiteRepository;
+import ru.job4j.repository.model.Site;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -23,13 +23,13 @@ import java.util.Objects;
 @RestController
 @RequestMapping("/users")
 public class UserController {
-    private final PostRepository posts;
+    private final SiteRepository posts;
     private final BCryptPasswordEncoder encoder;
     private final ObjectMapper objectMapper;
     private static final Logger LOGGER = LoggerFactory.getLogger(UserController.class.getSimpleName());
 
     @PostMapping("/sign-up")
-    public ResponseEntity<Post> signUp(@Valid @RequestBody Post post) {
+    public ResponseEntity<Site> signUp(@Valid @RequestBody Site post) {
         if (Objects.equals(post.getLogin(), "хер") || Objects.equals(post.getPassword(), "хер")) {
             throw new IllegalArgumentException("foul language login or password");
         }
@@ -38,7 +38,7 @@ public class UserController {
     }
 
     @GetMapping("/all")
-    public List<Post> findAll() {
+    public List<Site> findAll() {
         return posts.findAll();
     }
 

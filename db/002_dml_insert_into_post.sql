@@ -1,1 +1,0 @@
-insert into post (login, password) values ('test', '123');

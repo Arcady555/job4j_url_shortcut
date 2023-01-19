@@ -1,0 +1,1 @@
+insert into site (login, password) values ('test', '123');
