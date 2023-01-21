@@ -16,16 +16,14 @@ import javax.validation.constraints.NotNull;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-public class Site {
+public class UrlCode {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
     @NotNull(message = "Id must be non null")
     private int id;
-
-    @NotNull(message = "Name of site must be not empty")
-    private String site;
-    private String login;
-    private String password;
+    private String url;
+    private String code;
+    private int total;
 }
