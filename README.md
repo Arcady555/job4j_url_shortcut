@@ -1,28 +1,29 @@
-# **Сервис по обработке закодированных ссылок**
+# **RESTfull приложение - Сервис по обработке закодированных ссылок**
 
 ## Welcome!
 
-_Данное RESTfull приложение упростит работу в интернете_
+_Благодаря этой программе, вы обеспечите безопасность пользователей Вашего сайта, заменив ссылки в нём ссылками 
+на этот сервис_
        
 ## Используемые технологии:
 
-Java 18
+* Java 18
 
-Spring Boot (v2.7.3)
+* Spring Boot (v2.7.3)
 
-Apache Tomcat/9.0.65
+* Apache Tomcat/9.0.65
 
-Maven 4.0.0
+* Maven 4.0.0
 
-JDBC
+* JDBC
 
-Hibernate ORM core version 5.6.11.Final
+* Hibernate ORM core version 5.6.11.Final
 
-Liquibase 
+* Liquibase 
 
-PostgresSQL
+* PostgresSQL
 
-Lombok
+* Lombok
 
 ## Требования к окружению
 
