@@ -1,4 +1,4 @@
-package ru.job4j.url_shortcut.websecurity;
+package ru.job4j.urlshortcut.websecurity;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,9 +12,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-import ru.job4j.url_shortcut.filter.JWTAuthenticationFilter;
-import ru.job4j.url_shortcut.filter.JWTAuthorizationFilter;
-import ru.job4j.url_shortcut.service.UserDetailsServiceImpl;
+import ru.job4j.urlshortcut.filter.JWTAuthenticationFilter;
+import ru.job4j.urlshortcut.filter.JWTAuthorizationFilter;
+import ru.job4j.urlshortcut.service.UserDetailsServiceImpl;
 
 @Configuration
 @EnableWebSecurity

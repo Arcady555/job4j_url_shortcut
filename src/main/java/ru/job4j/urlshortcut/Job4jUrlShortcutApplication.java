@@ -1,4 +1,4 @@
-package ru.job4j.url_shortcut;
+package ru.job4j.urlshortcut;
 
 import liquibase.integration.spring.SpringLiquibase;
 import org.springframework.boot.SpringApplication;
