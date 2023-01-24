@@ -1,4 +1,4 @@
-package ru.job4j.web;
+package ru.job4j.url_shortcut.websecurity;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,20 +12,17 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-import ru.job4j.filter.JWTAuthenticationFilter;
-import ru.job4j.filter.JWTAuthorizationFilter;
-import ru.job4j.service.UserDetailsServiceImpl;
-
-import static ru.job4j.filter.JWTAuthenticationFilter.SIGN_UP_URL;
-import static ru.job4j.filter.JWTAuthenticationFilter.STATISTIC_URL;
+import ru.job4j.url_shortcut.filter.JWTAuthenticationFilter;
+import ru.job4j.url_shortcut.filter.JWTAuthorizationFilter;
+import ru.job4j.url_shortcut.service.UserDetailsServiceImpl;
 
 @Configuration
 @EnableWebSecurity
-public class WebSecurity extends WebSecurityConfigurerAdapter {
+public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     private final UserDetailsServiceImpl userDetailsService;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    public WebSecurity(UserDetailsServiceImpl userDetailsService, BCryptPasswordEncoder bCryptPasswordEncoder) {
+    public WebSecurityConfiguration(UserDetailsServiceImpl userDetailsService, BCryptPasswordEncoder bCryptPasswordEncoder) {
         this.userDetailsService = userDetailsService;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
@@ -33,8 +30,8 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable().authorizeRequests()
-                .antMatchers(HttpMethod.POST, SIGN_UP_URL).permitAll()
-                .antMatchers(HttpMethod.GET, STATISTIC_URL).permitAll()
+                .antMatchers(HttpMethod.POST, JWTAuthenticationFilter.SIGN_UP_URL).permitAll()
+                .antMatchers(HttpMethod.GET, JWTAuthenticationFilter.STATISTIC_URL).permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .addFilter(new JWTAuthenticationFilter(authenticationManager()))

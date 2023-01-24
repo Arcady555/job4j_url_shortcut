@@ -1,12 +1,12 @@
-package ru.job4j.controller;
+package ru.job4j.url_shortcut.controller;
 
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ru.job4j.repository.model.UrlCode;
-import ru.job4j.repository.model.UrlCodeDTO;
-import ru.job4j.service.UrlCodeService;
+import ru.job4j.url_shortcut.repository.model.UrlCode;
+import ru.job4j.url_shortcut.repository.model.UrlCodeDTO;
+import ru.job4j.url_shortcut.service.UrlCodeService;
 
 import java.security.NoSuchAlgorithmException;
 import java.util.List;

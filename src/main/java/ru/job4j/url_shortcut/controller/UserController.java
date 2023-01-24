@@ -1,13 +1,14 @@
-package ru.job4j.controller;
+package ru.job4j.url_shortcut.controller;
 
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
-import ru.job4j.repository.SiteRepository;
-import ru.job4j.repository.model.Site;
-import ru.job4j.repository.model.SiteDTO;
+import ru.job4j.url_shortcut.repository.SiteRepository;
+import ru.job4j.url_shortcut.repository.model.Site;
+import ru.job4j.url_shortcut.repository.model.SiteDTO;
+
 import javax.validation.Valid;
 import java.util.Objects;
 import java.util.Random;
