@@ -1,4 +1,4 @@
-package ru.job4j.urlshortcut.websecurity;
+package ru.job4j.urlshortcut.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
