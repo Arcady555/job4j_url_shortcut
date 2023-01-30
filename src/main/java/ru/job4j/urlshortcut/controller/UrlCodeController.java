@@ -4,8 +4,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ru.job4j.urlshortcut.repository.model.UrlCode;
-import ru.job4j.urlshortcut.repository.model.UrlCodeDTO;
+import ru.job4j.urlshortcut.model.UrlCode;
+import ru.job4j.urlshortcut.model.UrlCodeDTO;
 import ru.job4j.urlshortcut.service.UrlCodeService;
 
 import java.security.NoSuchAlgorithmException;

@@ -4,8 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.stereotype.Service;
 import ru.job4j.urlshortcut.repository.UrlCodeRepository;
-import ru.job4j.urlshortcut.repository.model.UrlCode;
-import ru.job4j.urlshortcut.repository.model.UrlCodeDTO;
+import ru.job4j.urlshortcut.model.UrlCode;
+import ru.job4j.urlshortcut.model.UrlCodeDTO;
 
 import java.util.ArrayList;
 import java.util.List;

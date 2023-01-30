@@ -6,8 +6,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import ru.job4j.urlshortcut.repository.SiteRepository;
-import ru.job4j.urlshortcut.repository.model.Site;
-import ru.job4j.urlshortcut.repository.model.SiteDTO;
+import ru.job4j.urlshortcut.model.Site;
+import ru.job4j.urlshortcut.model.SiteDTO;
 
 import javax.validation.Valid;
 import java.util.Objects;
