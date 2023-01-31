@@ -5,7 +5,7 @@ import lombok.Data;
 import org.springframework.stereotype.Service;
 import ru.job4j.urlshortcut.repository.UrlCodeRepository;
 import ru.job4j.urlshortcut.model.UrlCode;
-import ru.job4j.urlshortcut.model.UrlCodeDTO;
+import ru.job4j.urlshortcut.dto.UrlCodeDTO;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,7 +38,7 @@ public class UrlCodeService {
         return list;
     }
 
-    public UrlCode findByCode(String code) {
+    public Optional<UrlCode> findByCode(String code) {
         return urlCodes.findByCode(code);
     }
 }

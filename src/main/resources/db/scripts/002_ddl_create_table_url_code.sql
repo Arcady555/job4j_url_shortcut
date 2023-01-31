@@ -1,4 +1,4 @@
-create table url_code (
+create table if not exists url_code (
     id serial primary key not null,
     url varchar UNIQUE,
     code varchar UNIQUE,

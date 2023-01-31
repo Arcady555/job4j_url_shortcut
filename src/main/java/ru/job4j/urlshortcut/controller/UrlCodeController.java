@@ -5,11 +5,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.job4j.urlshortcut.model.UrlCode;
-import ru.job4j.urlshortcut.model.UrlCodeDTO;
+import ru.job4j.urlshortcut.dto.UrlCodeDTO;
 import ru.job4j.urlshortcut.service.UrlCodeService;
 
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @AllArgsConstructor
@@ -29,15 +30,20 @@ public class UrlCodeController {
 
     @GetMapping("/redirect/{code}")
     public ResponseEntity<String> redirect(@PathVariable String code) {
-        UrlCode urlCode = urlCodes.findByCode(code);
-        String url = urlCode.getUrl();
-        int i = urlCode.getTotal();
-        urlCode.setTotal(i + 1);
-        urlCodes.save(urlCode);
-        return new ResponseEntity<>(
-                "REDIRECT " + url,
-                HttpStatus.valueOf(302)
-        );
+        Optional<UrlCode> optionalUrlCode = urlCodes.findByCode(code);
+        if (optionalUrlCode.isPresent()) {
+            UrlCode urlCode = optionalUrlCode.get();
+            String url = urlCode.getUrl();
+            int i = urlCode.getTotal();
+            urlCode.setTotal(i + 1);
+            urlCodes.save(urlCode);
+            return new ResponseEntity<>(
+                    "REDIRECT " + url,
+                    HttpStatus.valueOf(302)
+            );
+        } else {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     @GetMapping("/statistic")

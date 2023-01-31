@@ -7,7 +7,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import ru.job4j.urlshortcut.repository.SiteRepository;
 import ru.job4j.urlshortcut.model.Site;
-import ru.job4j.urlshortcut.model.SiteDTO;
+import ru.job4j.urlshortcut.dto.SiteDTO;
 
 import javax.validation.Valid;
 import java.util.Objects;
@@ -17,7 +17,6 @@ import java.util.Random;
 @RestController
 public class UserController {
     private final SiteRepository sites;
-    private final BCryptPasswordEncoder encoder;
 
     @PostMapping("/registration")
     public ResponseEntity<SiteDTO> signUp(@Valid @RequestBody Site site) {
@@ -26,6 +25,7 @@ public class UserController {
         }
         String login = generateCode();
         String password = generateCode();
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         site.setLogin(login);
         site.setPassword(password);
         site.setPassword(encoder.encode(site.getPassword()));
