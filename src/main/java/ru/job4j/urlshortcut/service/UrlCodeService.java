@@ -41,4 +41,8 @@ public class UrlCodeService {
     public Optional<UrlCode> findByCode(String code) {
         return urlCodes.findByCode(code);
     }
+
+    public int incrementTotal(UrlCode urlCode) {
+        return urlCodes.incrementTotal(urlCode);
+    }
 }

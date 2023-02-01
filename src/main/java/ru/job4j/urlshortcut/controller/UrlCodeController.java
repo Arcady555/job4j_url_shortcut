@@ -34,9 +34,7 @@ public class UrlCodeController {
         if (optionalUrlCode.isPresent()) {
             UrlCode urlCode = optionalUrlCode.get();
             String url = urlCode.getUrl();
-            int i = urlCode.getTotal();
-            urlCode.setTotal(i + 1);
-            urlCodes.save(urlCode);
+            urlCodes.incrementTotal(urlCode);
             return new ResponseEntity<>(
                     "REDIRECT " + url,
                     HttpStatus.valueOf(302)
